@@ -1,15 +1,27 @@
-import express from 'express';
+// src/index.ts
+import express, { Express, Request, Response } from 'express';
 import dotenv from 'dotenv';
-import router from './routes/routes';
+import authRouter from './routes/auth.routes'; // <-- 1. Importer le routeur
+import userRouter from "./routes/user.routes";
+import roomRouter from './routes/room.routes';
+import bookingRouter from './routes/booking.routes';
 
 dotenv.config();
 
-const app = express();
+const app: Express = express();
+const port = process.env.PORT || 3000;
+
 app.use(express.json());
 
-app.use('/api', router);
+app.get('/', (req: Request, res: Response) => {
+    res.send('Bienvenue sur l\'API de RoomApi !');
+});
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-    console.log(`Server running on http://localhost:${PORT}`);
+app.use('/api/auth', authRouter);
+app.use('/api/users', userRouter);
+app.use('/api/rooms', roomRouter);
+app.use('/api/bookings', bookingRouter);
+
+app.listen(port, () => {
+    console.log(`[server]: Serveur démarré sur http://localhost:${port}`);
 });
