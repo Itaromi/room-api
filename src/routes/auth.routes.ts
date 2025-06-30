@@ -1,6 +1,8 @@
 // src/routes/auth.routes.ts
 import { Router } from 'express';
 import { register, login } from '@/controllers/auth.controller';
+import { validate } from '@/middlewares/validate.middleware';
+import { registerSchema, loginSchema } from '@/validators/auth.validator';
 
 const router = Router();
 
@@ -44,7 +46,7 @@ const router = Router();
  *                 message:
  *                   type: string
  */
-router.post('/register', register);
+router.post('/register', validate(registerSchema), register);
 
 /**
  * @swagger
@@ -84,6 +86,6 @@ router.post('/register', register);
  *                 message:
  *                   type: string
  */
-router.post('/login', login);
+router.post('/login', validate(loginSchema), login);
 
 export default router;
