@@ -10,7 +10,9 @@
     "prisma:generate": "npx prisma generate"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
     "@types/express": "^5.0.3",
+    "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^24.0.7",
     "nodemon": "^3.1.10",
     "ts-node": "^10.9.2",
