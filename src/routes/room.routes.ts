@@ -2,6 +2,8 @@ import { Router } from 'express';
 import { getAllRooms, getRoomById, createRoom } from '@/controllers/room.controller';
 import { authMiddleware } from '@/middlewares/auth.middleware';
 import { isAdmin } from '@/middlewares/isAdmin.middleware';
+import { validate } from '@/middlewares/validate.middleware';
+import { roomCreateSchema } from '@/validators/room.validator';
 
 const router = Router();
 
@@ -145,6 +147,6 @@ router.get('/:id', authMiddleware, getRoomById);
  *                 message:
  *                   type: string
  */
-router.post('/', authMiddleware, isAdmin, createRoom);
+router.post('/', authMiddleware, isAdmin, validate(roomCreateSchema), createRoom);
 
 export default router;

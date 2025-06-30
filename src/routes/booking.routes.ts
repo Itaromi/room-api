@@ -2,6 +2,8 @@ import { Router } from 'express';
 import { getBookings, createBooking } from '@/controllers/booking.controller';
 import { authMiddleware } from '@/middlewares/auth.middleware';
 import { checkRoomConstraints } from '@/middlewares/rules.middleware';
+import { validate } from '@/middlewares/validate.middleware';
+import { bookingCreateSchema } from '@/validators/booking.validator';
 
 const router = Router();
 
@@ -111,6 +113,6 @@ router.get('/', authMiddleware, getBookings);
  *                 message:
  *                   type: string
  */
-router.post('/', authMiddleware, checkRoomConstraints, createBooking);
+router.post('/', authMiddleware, validate(bookingCreateSchema), checkRoomConstraints, createBooking);
 
 export default router;
