@@ -1,7 +1,7 @@
 /// <reference path="../types/express.d.ts" />
 // src/controllers/user.controller.ts
 import { Request, Response } from 'express';
-import {prisma} from '../services/prisma';
+import {prisma} from '@/services/prisma';
 
 export const getMyProfile = async (req: Request, res: Response): Promise<void> => {
     if (!req.user) {

@@ -1,7 +1,7 @@
 // src/routes/user.routes.ts
 import { Router } from 'express';
-import { getMyProfile } from '../controllers/user.controller';
-import { authMiddleware } from '../middlewares/auth.middleware';
+import { getMyProfile } from '@/controllers/user.controller';
+import { authMiddleware } from '@/middlewares/auth.middleware';
 
 const router = Router();
 
